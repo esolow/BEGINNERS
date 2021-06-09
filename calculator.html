@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        .harden{
+            font-size: 2cm;
+            color: teal;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+        }
+        .center{
+            position:absolute;
+            height: X px;
+            width: Y px;
+            left:50%;
+            top:50%;
+            margin-top:- X/2 px;
+            margin-left:- Y/2 px;
+        }
+        #content {
+            max-width: 1000px;
+            margin: auto;
+            left: 1%;
+            right: 1%;
+            position: absolute;
+}
+    </style>
+    <head>
+        <title>calculator</title>
+    </head>
+    <body>
+        <h1 class="center">This is my page</h1>
+        <p id = kyrie>0</p>
+        <button onclick="plus()">+</button>
+        <button onclick="minus()">-</button>
+        <button onclick="reset()">C</button>
+        <div id="content">...</div>
+
+    </body>
+
+    <script>
+        let first_num = 0;
+        const printed_number = document.getElementById("kyrie");
+
+        function plus(){
+            first_num++;
+            printed_number.innerHTML = first_num;
+        }
+        function minus(){
+            if (first_num>0) first_num--;
+            printed_number.innerHTML = first_num;
+        }
+        function reset(){
+            first_num = 0;
+            printed_number.innerHTML = first_num;
+        }
+        $(function() {
+            $(window).on('resize', function resize()  {
+                $(window).off('resize', resize);
+                setTimeout(function () {
+                    var content = $('#content');
+                    var top = (window.innerHeight - content.height()) / 2;
+                    content.css('top', Math.max(0, top) + 'px');
+                    $(window).on('resize', resize);
+                }, 50);
+            }).resize();
+        });
+
+    </script>
+
+</html>
